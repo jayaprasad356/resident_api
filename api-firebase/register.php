@@ -34,9 +34,9 @@ if (empty($_POST['password'])) {
     print_r(json_encode($response));
     return false;
 }
-if (empty($_POST['SLN'])) {
+if (empty($_POST['SNI'])) {
     $response['success'] = false;
-    $response['message'] = "SLN should be filled!";
+    $response['message'] = "SNI should be filled!";
     print_r(json_encode($response));
     return false;
 }
@@ -45,31 +45,31 @@ $email = $db->escapeString($_POST['email']);
 $fullname = $db->escapeString($_POST['fullname']);
 $dob = $db->escapeString($_POST['dob']);
 $password = $db->escapeString($_POST['password']);
-$SLN = $db->escapeString($_POST['SLN']);
+$SNI = $db->escapeString($_POST['SNI']);
 $sql = "SELECT * FROM users WHERE email = '" . $email . "'";
 $db->sql($sql);
 $res = $db->getResult();
 $emailnum = $db->numRows($res);
-$sql = "SELECT * FROM users WHERE SLN = '" . $SLN . "'";
+$sql = "SELECT * FROM users WHERE SNI = '" . $SNI . "'";
 $db->sql($sql);
 $res = $db->getResult();
-$slnnum = $db->numRows($res);
+$SNInum = $db->numRows($res);
 if ($emailnum == 1) {
     $response['success'] = false;
     $response['message'] = "Email already registered";
     print_r(json_encode($response));
 
 }
-if ($slnnum == 1) {
+if ($SNInum == 1) {
     $response['success'] = false;
-    $response['message'] = "SLN already registered";
+    $response['message'] = "SNI already registered";
     print_r(json_encode($response));
 }
 else {
-    $sql = "INSERT INTO users(`email`,`fullname`, `dob`, `password`, `SLN`)VALUES('$email','$fullname','$dob','$password','$SLN')";
+    $sql = "INSERT INTO users(`email`,`fullname`, `dob`, `password`, `SNI`)VALUES('$email','$fullname','$dob','$password','$SNI')";
     $db->sql($sql);
     $res = $db->getResult();
-    $sql = "SELECT * FROM users WHERE SLN = '" . $SLN . "'";
+    $sql = "SELECT * FROM users WHERE SNI = '" . $SNI . "'";
     $db->sql($sql);
     $res = $db->getResult();
     $response['success'] = true;

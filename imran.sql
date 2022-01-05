@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 04, 2022 at 02:24 PM
--- Server version: 10.4.18-MariaDB
--- PHP Version: 7.3.27
+-- Generation Time: Jan 05, 2022 at 08:42 PM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 7.4.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -42,7 +42,8 @@ CREATE TABLE `questions` (
 --
 
 INSERT INTO `questions` (`id`, `question`, `option_1`, `option_2`, `option_3`, `option_4`, `correct_option`) VALUES
-(1, 'Whats your Favourite Fruit?', 'Apple', 'Orange', 'Lemon', 'Pine Apple', 'Lemon');
+(1, 'Whats your Favourite Fruit?', 'Apple', 'Orange', 'Lemon', 'Pine Apple', 'Lemon'),
+(2, 'How are you?', 'fine', 'not', 'ok', 'not bad', 'not bad');
 
 -- --------------------------------------------------------
 
@@ -57,15 +58,16 @@ CREATE TABLE `users` (
   `dob` varchar(200) NOT NULL,
   `address` varchar(300) NOT NULL,
   `password` varchar(200) NOT NULL,
-  `SLN` varchar(8) NOT NULL
+  `SNI` varchar(8) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `email`, `fullname`, `dob`, `address`, `password`, `SLN`) VALUES
-(1, 'jp@gmail.com', 'jaya prasad', '01-11-2000', '', '12345678', '23456781');
+INSERT INTO `users` (`id`, `email`, `fullname`, `dob`, `address`, `password`, `SNI`) VALUES
+(1, 'jp@gmail.com', 'jaya prasad', '01-11-2000', '', '12345678', '23456781'),
+(2, 'jayaprasad356@gmail.com', 'vgggh', '4/1/2022', '', '12345678', '56889989');
 
 --
 -- Indexes for dumped tables
@@ -91,13 +93,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `questions`
 --
 ALTER TABLE `questions`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
