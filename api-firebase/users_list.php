@@ -16,12 +16,12 @@ if (empty($_POST['type'])) {
     print_r(json_encode($response));
     return false;
 }
-$sql = "SELECT * FROM questions";
+$sql = "SELECT * FROM users";
 $db->sql($sql);
 $res = $db->getResult();
 $num = $db->numRows($res);
 $response['success'] = true;
-$response['message'] = "Questions Retrived Successfully";
+$response['message'] = "Users Retrived Successfully";
 $response['data'] = $res;
 print_r(json_encode($response));
 

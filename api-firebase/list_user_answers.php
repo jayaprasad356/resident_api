@@ -10,18 +10,19 @@ header("Pragma: no-cache");
 include_once('../includes/crud.php');
 $db = new Database();
 $db->connect();
-if (empty($_POST['type'])) {
+if (empty($_POST['user_id'])) {
     $response['success'] = false;
-    $response['message'] = "Type should be filled!";
+    $response['message'] = "User Id should be filled!";
     print_r(json_encode($response));
     return false;
 }
-$sql = "SELECT * FROM questions";
+$user_id = $db->escapeString($_POST['user_id']);
+$sql = "SELECT * FROM users_answers WHERE user_id = '$user_id'";
 $db->sql($sql);
 $res = $db->getResult();
 $num = $db->numRows($res);
 $response['success'] = true;
-$response['message'] = "Questions Retrived Successfully";
+$response['message'] = "User Answers Retrived Successfully";
 $response['data'] = $res;
 print_r(json_encode($response));
 

@@ -30,9 +30,18 @@ $db->sql($sql);
 $res = $db->getResult();
 $num = $db->numRows($res);
 if ($num == 1) {
-    $response['success'] = true;
+    $response["success"]   = true;
     $response['message'] = "Login Successfully";
-    $response['data'] = $res;
+    
+    foreach ($res as $row) {
+        $response['success']     = true;
+        $response['id'] = $row['id'];
+        $response['fullname'] = $row['fullname'];
+        $response['SNI'] = $row['SNI'];
+        
+        
+    }
+    
     print_r(json_encode($response));
 }
 else {

@@ -9,6 +9,12 @@ header("Pragma: no-cache");
 include_once('../includes/crud.php');
 $db = new Database();
 $db->connect();
+if (empty($_POST['type'])) {
+    $response['success'] = false;
+    $response['message'] = "Type should be filled!";
+    print_r(json_encode($response));
+    return false;
+}
 $sql = "TRUNCATE TABLE questions";
 $db->sql($sql);
 $response['success'] = true;
