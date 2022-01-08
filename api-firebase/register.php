@@ -44,7 +44,7 @@ if (empty($_POST['SNI'])) {
 $email = $db->escapeString($_POST['email']);
 $fullname = $db->escapeString($_POST['fullname']);
 $dob = $db->escapeString($_POST['dob']);
-$password = $db->escapeString($_POST['password']);
+$password = md5($db->escapeString($_POST['password']));
 $SNI = $db->escapeString($_POST['SNI']);
 $sql = "SELECT * FROM users WHERE email = '" . $email . "'";
 $db->sql($sql);
@@ -58,12 +58,14 @@ if ($emailnum == 1) {
     $response['success'] = false;
     $response['message'] = "Email already registered";
     print_r(json_encode($response));
+    return false;
 
 }
 if ($SNInum == 1) {
     $response['success'] = false;
     $response['message'] = "SNI already registered";
     print_r(json_encode($response));
+    return false;
 }
 else {
     $sql = "INSERT INTO users(`email`,`fullname`, `dob`, `password`, `SNI`)VALUES('$email','$fullname','$dob','$password','$SNI')";

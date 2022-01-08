@@ -10,9 +10,9 @@ include_once('../includes/crud.php');
 $db = new Database();
 $db->connect();
 
-if (empty($_POST['SNI'])) {
+if (empty($_POST['email'])) {
     $response['success'] = false;
-    $response['message'] = "Sni should be filled!";
+    $response['message'] = "Email should be filled!";
     print_r(json_encode($response));
     return false;
 }
@@ -23,30 +23,20 @@ if (empty($_POST['password'])) {
     return false;
 }
 
-$SNI = $db->escapeString($_POST['SNI']);
+$email = $db->escapeString($_POST['email']);
 $password = md5($db->escapeString($_POST['password']));
-$sql = "SELECT * FROM users WHERE SNI = '" . $SNI . "' AND password = '" . $password . "'";
+$sql = "SELECT * FROM council WHERE email = '" . $email . "' AND password = '" . $password . "'";
 $db->sql($sql);
 $res = $db->getResult();
 $num = $db->numRows($res);
 if ($num == 1) {
     $response["success"]   = true;
     $response['message'] = "Login Successfully";
-    
-    foreach ($res as $row) {
-        $response['success']     = true;
-        $response['id'] = $row['id'];
-        $response['fullname'] = $row['fullname'];
-        $response['SNI'] = $row['SNI'];
-        
-        
-    }
-    
     print_r(json_encode($response));
 }
 else {
     $response['success'] = false;
-    $response['message'] = "SNI or Password Invalid";
+    $response['message'] = "Email or Password Invalid";
     print_r(json_encode($response));
 
 }
