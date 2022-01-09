@@ -21,10 +21,21 @@ $sql = "SELECT * FROM users_answers WHERE user_id = '$user_id'";
 $db->sql($sql);
 $res = $db->getResult();
 $num = $db->numRows($res);
-$response['success'] = true;
-$response['message'] = "User Answers Retrived Successfully";
-$response['data'] = $res;
-print_r(json_encode($response));
+if($num >= 1){
+    $response['success'] = true;
+    $response['message'] = "User Answers Retrived Successfully";
+    $response['data'] = $res;
+    print_r(json_encode($response));
+
+}
+else{
+    $response['success'] = false;
+    $response['message'] = "User Answers Not Found";
+    $response['data'] = $res;
+    print_r(json_encode($response));
+
+}
+
 
 
 
